@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="MemberMapper">
+	<resultMap type="Zero.model.vo.Member" id="memberResultMap">
+		<id property="memberId" column="ZERO_ID" />
+		<result property="memberPw" column="ZERO_PW" />
+		<result property="memberNickname" column="ZERO_NICKNAME" />
+		<result property="memberPhone" column="ZERO_PHONE" />
+		<result property="memberDate" column="ZERO_DATE" />
+		<result property="updateDate" column="UPDATE_DATE" />
+	</resultMap>
+	<insert id="insertMember">
+		INSERT INTO ZERO_TBL VALUES(#{memberId },#{memberPw },#{memberNickname },#{memberPhone },DEFAULT,DEFAULT)
+	</insert>
+	
+	<update id="updateMember">
+		UPDATE ZERO_TBL SET ZERO_PW = #{memberPw}, ZERO_NICKNAME = #{memberNickname}, ZERO_PHONE = #{memberPhone} WHERE ZERO_ID = #{memberId}
+	</update>
+	
+	<delete id="deleteMember">
+		DELETE FROM ZERO_TBL WHERE ZERO_ID = #{memberId }
+	</delete>
+	
+	<select id="selectCheckLogin" resultMap="memberResultMap">
+		SELECT * FROM ZERO_TBL WHERE ZERO_ID = #{memberId } AND ZERO_PW = #{memberPw }
+	</select>
+	
+	<select id="selectOneById" resultMap="memberResultMap">
+		SELECT * FROM ZERO_TBL WHERE ZERO_ID = #{memberId }	
+	</select>
+	
+</mapper>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
